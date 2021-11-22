@@ -1,0 +1,42 @@
+ lateinit var btnIlk: Button
+    lateinit var btnSon:Button
+    lateinit var btnGeri:Button
+    lateinit var btnIleri:Button
+    lateinit var image: ImageView
+    var resimdizisi= arrayOf(R.drawable.resim1,R.drawable.resim2,R.drawable.resim3,
+        R.drawable.resim4,R.drawable.resim5)
+    var resimAdi= arrayOf("Bebek 1","Bebek 2","Bebek 3","Bebek 4","Bebek 5")
+    var uzunluk=resimdizisi.size-1
+    var sayac=0
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        btnGeri=findViewById(R.id.btnGeri)
+        btnIlk=findViewById(R.id.btnIlk)
+        btnSon=findViewById(R.id.btnSon)
+        btnIleri=findViewById(R.id.btnIleri)
+        image=findViewById(R.id.imageView)
+        btnIlk.setOnClickListener {
+            sayac=0
+            image.setImageResource(resimdizisi[sayac])
+            Toast.makeText(this,resimAdi[sayac], Toast.LENGTH_LONG).show()
+        }
+        btnSon.setOnClickListener {
+            sayac=uzunluk
+            image.setImageResource(resimdizisi[sayac])
+            Toast.makeText(this,resimAdi[sayac],Toast.LENGTH_LONG).show()
+        }
+        btnIleri.setOnClickListener {
+            sayac++
+            if(sayac>uzunluk) sayac=0
+            image.setImageResource(resimdizisi[sayac])
+            Toast.makeText(this,resimAdi[sayac],Toast.LENGTH_LONG).show()
+        }
+        btnGeri.setOnClickListener {
+            sayac--
+            if (sayac<0) sayac=uzunluk
+            image.setImageResource(resimdizisi[sayac])
+            Toast.makeText(this,resimAdi[sayac],Toast.LENGTH_LONG).show()
+        }
+    }
+}
