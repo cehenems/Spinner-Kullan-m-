@@ -1,0 +1,39 @@
+public class MainActivity2 extends AppCompatActivity {
+    Integer resimID[] = {R.drawable.resim1, R.drawable.resim2, R.drawable.resim3, R.drawable.resim4, R.drawable.resim5};
+    String isimDizisi[]={"Bebek1","Bebek 2","Bebek 3","Bebek 4","Bebek 5"};
+    int sayac=0;
+    ImageView resim;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        resim=findViewById(R.id.imageView);
+    }
+
+    public void IlkMetot(View view) {
+        sayac=0;
+        Toast.makeText(this, isimDizisi[sayac], Toast.LENGTH_SHORT).show();
+        resim.setImageResource(resimID[sayac]);
+    }
+
+    public void SonMetot(View view) {
+        sayac=resimID.length-1;
+        Toast.makeText(this, isimDizisi[sayac], Toast.LENGTH_SHORT).show();
+        resim.setImageResource(resimID[sayac]);
+    }
+
+    public void IleriMetot(View view) {
+        sayac++;
+        if(sayac>(resimID.length-1)) sayac=0;
+        Toast.makeText(this, isimDizisi[sayac], Toast.LENGTH_SHORT).show();
+        resim.setImageResource(resimID[sayac]);
+    }
+
+    public void GeriMetot(View view) {
+        sayac--;
+        if(sayac<0) sayac=resimID.length-1;
+        Toast.makeText(this, isimDizisi[sayac], Toast.LENGTH_SHORT).show();
+        resim.setImageResource(resimID[sayac]);
+    }
+}
