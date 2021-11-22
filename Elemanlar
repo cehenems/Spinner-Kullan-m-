@@ -1,0 +1,135 @@
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val tvTarih=findViewById<TextView>(R.id.tvTarih)
+        val dpTarih=findViewById<DatePicker>(R.id.dpTarih)
+        val bugun= Calendar.getInstance()
+        tvTarih.text = "${bugun.get(Calendar.YEAR)} / ${bugun.get(Calendar.MONTH)+1} / ${bugun.get(Calendar.DAY_OF_MONTH)} "
+        dpTarih.init(bugun.get(Calendar.YEAR),bugun.get(Calendar.MONTH),bugun.get(Calendar.DAY_OF_MONTH)) {
+            view, yil, ay, gun->
+            val yilinAyi=ay+1
+            tvTarih.text=gun.toString()+" / "+yilinAyi+" / "+yil
+        }
+        val tvSaat=findViewById<TextView>(R.id.tvSaat)
+        val tpSaat=findViewById<TimePicker>(R.id.tpSaat)
+        tpSaat.setOnTimeChangedListener { view, hourOfDay, minute ->
+            tvSaat.text = "$hourOfDay : $minute"
+        }
+        val cvTvTarih=findViewById<TextView>(R.id.cvtvTarih)
+        val cvTarih=findViewById<CalendarView>(R.id.cvTarih)
+        cvTarih.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            cvTvTarih.text = "$year / ${month+1} / $dayOfMonth"
+        }
+         val npSayi =findViewById<NumberPicker>(R.id.npSayi)
+        var renkler= arrayOf("Sarı","Kırmızı","Mavi")
+        npSayi.minValue = 0
+        npSayi.maxValue = renkler.size-1
+        npSayi.wrapSelectorWheel = true
+        npSayi.displayedValues=renkler
+        npSayi.setOnValueChangedListener { picker, oldVal, newVal ->
+           // Toast.makeText(this,"eski değer : $oldVal / Yeni değer : $newVal",Toast.LENGTH_LONG).show()
+            val sayi=npSayi.value
+            Toast.makeText(this,"değer : ${renkler[sayi]}",Toast.LENGTH_LONG).show()
+
+        }
+
+        val pbGizle=findViewById<Button>(R.id.pbGizle)
+        val progresBar=findViewById<ProgressBar>(R.id.progressBar)
+         progresBar.visibility =View.VISIBLE
+        pbGizle.setOnClickListener {
+            if(progresBar.isVisible) progresBar.visibility =View.GONE
+            else progresBar.visibility =View.VISIBLE
+         }
+
+        val pbhGizle=findViewById<Button>(R.id.pbhGizle)
+        val progresBarHorizonral=findViewById<ProgressBar>(R.id.progressBarHorizontal)
+
+        progresBarHorizonral.visibility ==View.VISIBLE
+        pbhGizle.setOnClickListener {
+            if(progresBarHorizonral.isVisible) progresBarHorizonral.visibility =View.GONE
+            else progresBarHorizonral.visibility =View.VISIBLE
+
+        }
+    }
+}
+
+
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <DatePicker
+                android:id="@+id/dpTarih"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></DatePicker>
+
+            <TextView
+                android:id="@+id/tvTarih"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TimePicker
+                android:id="@+id/tpSaat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TimePicker>
+
+            <TextView
+                android:id="@+id/tvSaat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+            <CalendarView
+                android:id="@+id/cvTarih"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></CalendarView>
+            <TextView
+                android:id="@+id/cvtvTarih"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+            <NumberPicker
+                android:id="@+id/npSayi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></NumberPicker>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/pbGizle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gizle" />
+
+            <ProgressBar
+                android:id="@+id/progressBarHorizontal"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/pbhGizle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horizontal Gizle" />
+        </LinearLayout>
+    </ScrollView>
+
