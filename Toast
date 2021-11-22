@@ -1,0 +1,50 @@
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    fun OzelYaziMetot(view: android.view.View) {
+        val yazi = TextView(this)
+        yazi.text = "Deneme"
+        yazi.setTextColor(Color.RED)
+        yazi.setBackgroundColor(Color.YELLOW)
+        yazi.textSize = 25f
+        val toast = Toast(this)
+        toast.duration = Toast.LENGTH_LONG
+        toast.setMargin(50f, 50f)
+        // toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.view = yazi
+        toast.show()
+    }
+
+    fun ResimMetot(view: android.view.View) {
+        val resim = ImageView(this)
+
+        resim.setBackgroundResource(R.drawable.toast_background)
+        resim.setImageResource(R.drawable.resim)
+        val toast = Toast(this)
+        toast.duration = Toast.LENGTH_LONG
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.view = resim
+        toast.show()
+    }
+
+    fun EkranMetot(view: android.view.View) {
+        val ekran = layoutInflater.inflate(
+            R.layout.toast_ekran,
+            findViewById(R.id.toast_ekran_root)
+        )
+        val textView = ekran.findViewById<TextView>(R.id.text)
+        textView.text = "Görüntü"
+        textView.setTextSize(30f)
+        val image = ekran.findViewById<ImageView>(R.id.image)
+        image.setImageResource(R.drawable.resim)
+        val toast = Toast(this)
+        toast.duration = Toast.LENGTH_LONG
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.view = ekran
+        toast.show()
+    }
+}
+
