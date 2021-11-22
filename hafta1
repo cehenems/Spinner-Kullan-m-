@@ -1,0 +1,52 @@
+class MainActivity : AppCompatActivity() {
+    lateinit var etnSayi1: EditText
+    lateinit var etnSayi2: EditText
+    lateinit var btnTopla: Button
+    lateinit var btnCikar: Button
+    lateinit var btnCarp: Button
+    lateinit var btnBol: Button
+    lateinit var btnSil: Button
+    lateinit var tvSonuc: TextView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.hesap_mak)
+        etnSayi1 = findViewById(R.id.etnSayi1)
+        etnSayi2 = findViewById(R.id.etnSayi2)
+        tvSonuc = findViewById(R.id.tvSonuc)
+        btnTopla = findViewById(R.id.btnTopla)
+        btnCikar = findViewById(R.id.btnCikar)
+        btnCarp = findViewById(R.id.btnCarp)
+        btnBol = findViewById(R.id.btnBol)
+        btnSil = findViewById(R.id.btnSil)
+        btnTopla.setOnClickListener {
+            var s1 = etnSayi1.text.toString().toInt()
+            var s2 = etnSayi2.text.toString().toInt()
+            var sonuc = s1 + s2;
+            // tvSonuc.text=s1.toString()+" + "+s2+" = "+sonuc
+            tvSonuc.text = "$s1 + $s2 = $sonuc"
+        }
+        btnCikar.setOnClickListener {
+            var s1 = etnSayi1.text.toString().toInt()
+            var s2 = etnSayi2.text.toString().toInt()
+            var sonuc = s1 - s2;
+            tvSonuc.text = "$s1 - $s2 = $sonuc"
+        }
+        btnCarp.setOnClickListener {
+            var s1 = etnSayi1.text.toString().toInt()
+            var s2 = etnSayi2.text.toString().toInt()
+            var sonuc = s1 * s2;
+            tvSonuc.text = "$s1 * $s2 = $sonuc"
+        }
+        btnBol.setOnClickListener {
+            var s1 = etnSayi1.text.toString().toInt()
+            var s2 = etnSayi2.text.toString().toInt()
+            var sonuc = s1 / s2;
+            tvSonuc.text = "$s1 / $s2 = $sonuc"
+        }
+        btnSil.setOnClickListener {
+            tvSonuc.text = ""
+            etnSayi1.text = null
+            etnSayi2.text = null
+        }
+    }
+}
